@@ -1,0 +1,24 @@
+baseURL = 'https://colorful-lollipop.github.io/harmony-wiki/'
+languageCode = 'zh-CN'
+title = 'Harmony Wiki'
+theme = 'hugo-book'
+
+[params]
+  BookTheme = 'auto'
+  BookToC = true
+  BookLogo = ''
+  BookSearch = true
+  BookSection = '*'
+  BookRepo = 'https://github.com/colorful-lollipop/harmony-wiki'
+  BookEditPath = 'edit/main'
+
+[menu]
+  [[menu.after]]
+    name = "GitHub"
+    url = "https://github.com/colorful-lollipop/harmony-wiki"
+    weight = 10
+
+  [[menu.after]]
+    name = "OpenHarmony 官网"
+    url = "https://www.openharmony.cn/"
+    weight = 20
