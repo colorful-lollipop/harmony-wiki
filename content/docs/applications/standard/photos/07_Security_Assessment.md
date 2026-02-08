@@ -110,7 +110,7 @@ let maliciousWant = {
   parameters: {
     uri: "multipleselect",
     maxSelectCount: 99999999,  // 异常大数值
-    filterMediaType: "<script>alert('xss')</script>"  // 异常类型
+    filterMediaType: "`<script>`alert('xss')</script>"  // 异常类型
   }
 };
 ```

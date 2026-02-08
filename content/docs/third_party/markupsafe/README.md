@@ -46,7 +46,7 @@ from markupsafe import Markup
 safe_text = Markup("<strong>Hello World</strong>")
 
 # 字符串操作会自动转义参数
-formatted = Markup("<em>{name}</em>").format(name='<script>alert(1)</script>')
+formatted = Markup("<em>{name}</em>").format(name='`<script>`alert(1)</script>')
 # 结果：<em>&lt;script&gt;alert(1)&lt;/script&gt;</em>
 ```
 
@@ -56,7 +56,7 @@ formatted = Markup("<em>{name}</em>").format(name='<script>alert(1)</script>')
 from markupsafe import escape
 
 # 将任意对象转换为安全的 Markup 对象
-escaped = escape("<script>alert(document.cookie);</script>")
+escaped = escape("`<script>`alert(document.cookie);</script>")
 # 结果：Markup('&lt;script&gt;alert(document.cookie);&lt;/script&gt;')
 ```
 

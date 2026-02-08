@@ -111,7 +111,7 @@
 
 ### 3. Python 脚本调试
 
-- 使用 python -m pdb <script>.py 进入调试模式
+- 使用 python -m pdb `<script>`.py 进入调试模式
 - 添加 print/logging 输出调试信息
 
 ---

@@ -45,7 +45,7 @@ weex-loader 的主要功能包括：
   .title { font-size: 48px; }
 </style>
 
-<script>
+`<script>`
   module.exports = {
     data: {
       title: 'Hello Weex'

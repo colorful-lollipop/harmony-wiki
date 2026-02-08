@@ -74,7 +74,7 @@
 
 **触发路径**:
 ```
-应用传入 URL="https://evil.com/?q=<script>..."
+应用传入 URL="https://evil.com/?q=`<script>`..."
   → 构造 HTTP 请求
   → 发送至服务器或中间人
 ```

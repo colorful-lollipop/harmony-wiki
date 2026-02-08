@@ -97,7 +97,7 @@
 **攻击路径**：
 ```
 恶意输入:
-  text: "<script>alert('XSS')</script>"
+  text: "`<script>`alert('XSS')</script>"
 ```
 
 **证据**：

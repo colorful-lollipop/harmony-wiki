@@ -172,13 +172,13 @@ except ImportError:
 2. 验证核心功能
    ```python
    from markupsafe import Markup, escape
-   assert escape("<script>") == Markup('&lt;script&gt;')
+   assert escape("`<script>`") == Markup('&lt;script&gt;')
    ```
 
 3. 验证 Jinja2 集成
    ```python
    from jinja2 import Template
    template = Template("Hello {{ name }}")
-   result = template.render(name="<script>alert(1)</script>")
-   assert "<script>" not in result
+   result = template.render(name="`<script>`alert(1)</script>")
+   assert "`<script>`" not in result
    ```
