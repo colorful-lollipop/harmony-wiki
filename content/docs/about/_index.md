@@ -1,11 +1,11 @@
 ---
-title: "关于本项目"
+title: "关于本项目 (about)"
 type: docs
 weight: 999
 bookCollapseSection: true
 ---
 
-# 关于本项目
+# 关于本项目 (about)
 
 本项目是 OpenHarmony 开源代码的 AI 辅助梳理文档，涵盖模块架构、N-API、构建、安全等多个方面。
 
