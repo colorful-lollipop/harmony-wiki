@@ -12,6 +12,11 @@ theme = 'hugo-book'
   BookRepo = 'https://github.com/colorful-lollipop/harmony-wiki'
   BookEditPath = 'edit/main'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [menu]
   [[menu.after]]
     name = "GitHub"
