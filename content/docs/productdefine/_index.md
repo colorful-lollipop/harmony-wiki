@@ -1,8 +1,7 @@
 ---
-title: 产品定义
-weight: 1
+title: "productdefine"
+type: docs
+weight: 160
+bookCollapseSection: true
 ---
-
 # 产品定义
-
-本章节包含 产品定义 相关的文档内容。

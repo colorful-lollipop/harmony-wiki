@@ -1,8 +1,7 @@
 ---
-title: 领域框架
-weight: 1
+title: "domains"
+type: docs
+weight: 90
+bookCollapseSection: true
 ---
-
 # 领域框架
-
-本章节包含 领域框架 相关的文档内容。

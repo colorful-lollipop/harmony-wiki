@@ -3,11 +3,16 @@ languageCode = 'zh-CN'
 title = 'Harmony Wiki'
 theme = 'hugo-book'
 
+# 性能优化
+enableGitInfo = false
+enableRobotsTXT = false
+
 [params]
   BookTheme = 'auto'
   BookToC = true
   BookLogo = ''
-  BookSearch = true
+  # 开发时关闭搜索（5600+文件构建索引太慢，生产环境再开启）
+  BookSearch = false
   BookSection = '*'
   BookRepo = 'https://github.com/colorful-lollipop/harmony-wiki'
   BookEditPath = 'edit/main'

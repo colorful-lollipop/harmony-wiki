@@ -1,0 +1,7 @@
+---
+title: "graphic_cangjie_wrapper"
+type: docs
+weight: 500
+bookCollapseSection: true
+---
+# Graphic Cangjie Wrapper

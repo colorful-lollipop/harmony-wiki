@@ -53,4 +53,16 @@ hugo --minify
 
 ## 📄 许可证
 
-本项目文档内容遵循相应开源协议，转载请注明出处。
+本项目采用 [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)（署名 4.0 国际许可协议）。
+
+[![CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+您可以自由地：
+- **共享** — 在任何媒介以任何形式复制、发行本作品
+- **演绎** — 修改、转换或以本作品为基础进行创作，在任何用途下，甚至商业目的
+
+只要您遵循以下条款：
+- **署名** — 您必须给出适当的署名，提供许可协议的链接，并标明是否进行了修改
+- **无附加限制** — 您不得使用法律条款或技术措施限制他人做许可协议允许的事情
+
+详见 [LICENSE](LICENSE) 文件。

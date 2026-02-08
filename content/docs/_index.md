@@ -1,129 +1,65 @@
-# 项目概览
+---
+title: "Harmony Wiki"
+type: docs
+---
+# Harmony Wiki
 
-> 本文档描述 OpenHarmony 文档仓库的基本信息、项目定位和关键概念。
+本项目使用 AI 辅助对 OpenHarmony 开源代码进行梳理（模块/架构/N-API/构建/安全等，尽量做到结论可追溯到源码），目前已启动约 480 个代码仓的整理并完成初稿。
 
-## 项目定位
+欢迎在该 Wiki 平台留言反馈/补充内容一起共建（如有疏漏以源码与官方文档为准）。
 
-### 仓库类型
+## 在线访问
 
-**OpenHarmony 文档仓库** 是一个专门存放 OpenHarmony 操作系统开发者文档的仓库，而非代码仓库。
+**GitHub Pages**: https://colorful-lollipop.github.io/harmony-wiki/
 
-| 属性 | 说明 |
+## 内容分类
+
+| 分类 | 说明 |
 |------|------|
-| 仓库性质 | 文档仓库（Documentation Repository） |
-| 主要内容 | OpenHarmony 开发者文档（中英文） |
-| 目标用户 | 应用开发者、设备开发者、贡献者 |
-| 维护方 | OpenHarmony Documentation SIG |
+| [应用程序](applications/) | 系统应用（Settings、Launcher 等） |
+| [方舟编译器](arkcompiler/) | ArkCompiler 相关文档 |
+| [基础系统](base/) | 基础系统服务 |
+| [构建系统](build/) | 构建系统和 GN 配置 |
+| [公共库](commonlibrary/) | 公共库和工具 |
+| [开发工具](developtools/) | 开发工具和调试工具 |
+| [设备支持](device/) | 设备适配和开发 |
+| [驱动框架](drivers/) | HDF 驱动框架 |
+| [基础能力](foundation/) | 基础能力子系统 |
+| [接口定义](interface/) | 接口定义规范 |
+| [内核](kernel/) | 内核相关文档 |
+| [N-API生成器](napi_generator/) | N-API 生成工具 |
+| [产品定义](productdefine/) | 产品定义配置 |
+| [测试框架](test/) | 测试框架和工具 |
+| [第三方库](third_party/) | 第三方开源组件 |
+| [厂商适配](vendor/) | 厂商适配层 |
+| [领域框架](domains/) | 领域业务框架 |
+| [IDE工具](ide/) | IDE 开发工具 |
 
-### 与代码仓库的关系
+## 关于本项目
 
-本仓库与 OpenHarmony 源代码仓库的关系：
+- [项目概览](about/readme/) - Wiki 覆盖范围和项目说明
+- [目录结构](about/structure/) - 仓库结构说明
+- [内容体系](about/content/) - 文档分类体系
+- [构建与发布](about/build/) - 构建工具和发布流程
+- [贡献指南](about/contribute/) - 如何贡献文档
+- [全站导航](about/summary/) - 快速导航
 
-| 仓库 | 说明 | 链接 |
-|------|------|------|
-| 文档仓库 | 本仓库，存放文档 | docs.openharmony.cn |
-| 代码仓库 | OpenHarmony 源代码 | gitee.com/openharmony |
-| 官网 | OpenHarmony 官方网站 | openharmony.cn |
+## 参与共建
 
-**说明**：本仓库的文档内容基于代码仓库的版本发布进行更新，包含应用开发、设备开发、设计规范等各类文档。
+欢迎通过以下方式参与：
+
+- 在 Issues 中提交反馈或建议
+- 提交 Pull Request 补充内容
+- 在文档页面底部评论区留言
 
 ## 许可证
 
-| 项目 | 许可证 |
-|------|--------|
-| 文档内容 | CC BY 4.0 (Creative Commons Attribution 4.0 International) |
-| 代码片段 | 遵循 OpenHarmony 源码许可证 |
-| 第三方组件 | 详见各文档头部声明 |
+本项目采用 [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)（署名 4.0 国际许可协议）。
 
-**证据**：`LICENSE:1-57`
+您可以自由地：
+- **共享** — 在任何媒介以任何形式复制、发行本作品
+- **演绎** — 修改、转换或以本作品为基础进行创作，在任何用途下，甚至商业目的
 
-## 关键概念
-
-### API Level
-
-API Level 是 OpenHarmony API 的版本标识，用于区分不同版本的系统能力。
-
-| API Level | 对应版本 | 状态 |
-|-----------|----------|------|
-| 20 | OpenHarmony 6.0 Release | ✅ 最新 |
-| 18 | OpenHarmony 5.1.0 Release | ✅ 维护中 |
-| 15 | OpenHarmony 5.0.3 | ✅ 维护中 |
-| 14 | OpenHarmony 5.0.2 | ✅ 维护中 |
-| 13 | OpenHarmony 5.0.1 | ✅ 维护中 |
-| 12 | OpenHarmony 5.0.0 Release | ✅ 维护中 |
-| 11 | OpenHarmony 4.1 Release | ❌ 已停止 |
-| 10 | OpenHarmony 4.0 Release | ❌ 已停止 |
-| 9 | OpenHarmony 3.2 Release | ❌ 已停止 |
-
-### LTS 版本
-
-LTS（Long Term Support）版本是 OpenHarmony 的长期支持版本，提供更长的维护周期。
-
-| LTS 版本 | 发布日期 | 维护状态 |
-|----------|----------|----------|
-| OpenHarmony 3.0 LTS | - | ❌ 已停止 |
-
-### XTS 测试
-
-XTS（X Test Suite）是 OpenHarmony 的兼容性测试套件，用于验证设备是否符合 OpenHarmony 技术规范。
-
-**证据**：`xts.diff` 文件存在
-
-## 版本发布策略
-
-### 分支策略
-
-| 分支 | 说明 |
-|------|------|
-| master | 最新开发版本文档 |
-| release-* | 各发布版本文档分支 |
-
-### 维护周期
-
-各版本的维护策略详见：[release-management](https://gitee.com/openharmony/release-management)
-
-**证据**：`README.md:51`
-
-## 语言支持
-
-### 官方语言
-
-| 语言 | 目录 | 状态 |
-|------|------|------|
-| 中文 (简体) | `zh-cn/` | ✅ 完整 |
-| 英文 | `en/` | ✅ 完整 |
-
-### 同步机制
-
-中英文文档原则上保持同步更新，具体同步策略详见 [05_Contribute.md](05_Contribute.md)。
-
-## 相关资源
-
-### 官方链接
-
-| 资源 | 链接 |
-|------|------|
-| OpenHarmony 官网 | https://www.openharmony.cn/ |
-| 邮件列表 | docs@openharmony.io |
-| Zulip 群组 | documentation_sig |
-| Gitee | https://gitee.com/openharmony |
-
-### 文档链接
-
-| 资源 | 链接 |
-|------|------|
-| 中文文档入口 | [zh-cn/readme.md](../zh-cn/readme.md) |
-| 英文文档入口 | [en/readme.md](../en/readme.md) |
-| 贡献指南 | [zh-cn/contribute/参与贡献.md](../zh-cn/contribute/参与贡献.md) |
-| 第三方许可证 | [zh-cn/contribute/第三方开源软件及许可证说明.md](../zh-cn/contribute/第三方开源软件及许可证说明.md) |
-
----
-
-**相关文档**：
-- [目录结构](02_Structure.md) - 了解仓库目录结构
-- [文档内容体系](03_Content.md) - 了解文档分类
-- [贡献指南](05_Contribute.md) - 学习如何贡献
-
----
-
-*最后更新：2026-02-06*
+只要您遵循以下条款：
+- **署名** — 您必须给出适当的署名，提供许可协议的链接，并标明是否进行了修改
+- **无附加限制** — 您不得使用法律条款或技术措施限制他人做许可协议允许的事情

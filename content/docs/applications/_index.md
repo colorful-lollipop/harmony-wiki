@@ -1,8 +1,7 @@
 ---
-title: 应用程序
-weight: 1
+title: "applications"
+type: docs
+weight: 20
+bookCollapseSection: true
 ---
-
 # 应用程序
-
-本章节包含 应用程序 相关的文档内容。

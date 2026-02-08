@@ -1,8 +1,7 @@
 ---
-title: 测试框架
-weight: 1
+title: "test"
+type: docs
+weight: 170
+bookCollapseSection: true
 ---
-
 # 测试框架
-
-本章节包含 测试框架 相关的文档内容。

@@ -1,8 +1,7 @@
 ---
-title: 基础能力
-weight: 1
+title: "foundation"
+type: docs
+weight: 110
+bookCollapseSection: true
 ---
-
 # 基础能力
-
-本章节包含 基础能力 相关的文档内容。

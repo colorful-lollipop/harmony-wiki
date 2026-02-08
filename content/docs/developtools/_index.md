@@ -1,8 +1,7 @@
 ---
-title: 开发工具
-weight: 1
+title: "developtools"
+type: docs
+weight: 70
+bookCollapseSection: true
 ---
-
 # 开发工具
-
-本章节包含 开发工具 相关的文档内容。

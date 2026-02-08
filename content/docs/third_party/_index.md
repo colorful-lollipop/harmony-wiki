@@ -1,8 +1,7 @@
 ---
-title: 第三方库
-weight: 1
+title: "third_party"
+type: docs
+weight: 180
+bookCollapseSection: true
 ---
-
 # 第三方库
-
-本章节包含 第三方库 相关的文档内容。

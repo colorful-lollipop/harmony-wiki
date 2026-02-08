@@ -1,8 +1,7 @@
 ---
-title: 设备支持
-weight: 1
+title: "device"
+type: docs
+weight: 80
+bookCollapseSection: true
 ---
-
 # 设备支持
-
-本章节包含 设备支持 相关的文档内容。

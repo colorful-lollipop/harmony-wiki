@@ -1,8 +1,7 @@
 ---
-title: 公共库
-weight: 1
+title: "commonlibrary"
+type: docs
+weight: 60
+bookCollapseSection: true
 ---
-
 # 公共库
-
-本章节包含 公共库 相关的文档内容。

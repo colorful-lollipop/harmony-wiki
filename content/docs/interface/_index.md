@@ -1,8 +1,7 @@
 ---
-title: 接口定义
-weight: 1
+title: "interface"
+type: docs
+weight: 130
+bookCollapseSection: true
 ---
-
 # 接口定义
-
-本章节包含 接口定义 相关的文档内容。

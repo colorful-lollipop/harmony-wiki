@@ -1,8 +1,7 @@
 ---
-title: 构建系统
-weight: 1
+title: "build"
+type: docs
+weight: 50
+bookCollapseSection: true
 ---
-
 # 构建系统
-
-本章节包含 构建系统 相关的文档内容。

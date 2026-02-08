@@ -1,8 +1,7 @@
 ---
-title: 内核
-weight: 1
+title: "kernel"
+type: docs
+weight: 140
+bookCollapseSection: true
 ---
-
 # 内核
-
-本章节包含 内核 相关的文档内容。

@@ -1,8 +1,7 @@
 ---
-title: N-API 生成器
-weight: 1
+title: "napi_generator"
+type: docs
+weight: 150
+bookCollapseSection: true
 ---
-
-# N-API 生成器
-
-本章节包含 N-API 生成器 相关的文档内容。
+# N-API生成器

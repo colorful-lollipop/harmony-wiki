@@ -1,8 +1,7 @@
 ---
-title: 方舟编译器
-weight: 1
+title: "arkcompiler"
+type: docs
+weight: 30
+bookCollapseSection: true
 ---
-
 # 方舟编译器
-
-本章节包含 方舟编译器 相关的文档内容。

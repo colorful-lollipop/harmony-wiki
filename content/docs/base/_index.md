@@ -1,8 +1,7 @@
 ---
-title: 基础系统
-weight: 1
+title: "base"
+type: docs
+weight: 40
+bookCollapseSection: true
 ---
-
 # 基础系统
-
-本章节包含 基础系统 相关的文档内容。

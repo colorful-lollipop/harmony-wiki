@@ -1,8 +1,7 @@
 ---
-title: 厂商适配
-weight: 1
+title: "vendor"
+type: docs
+weight: 190
+bookCollapseSection: true
 ---
-
 # 厂商适配
-
-本章节包含 厂商适配 相关的文档内容。
