@@ -12,3 +12,9 @@ hugo.linux
 
 # Node modules
 node_modules/
+
+# Test files
+config.test.toml
+content_test/
+public_test/
+.DS_Store

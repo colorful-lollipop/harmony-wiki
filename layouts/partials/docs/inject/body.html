@@ -1,0 +1,330 @@
+<!-- AI Chat Button -->
+<button class="ai-chat-button" id="aiChatButton" aria-label="打开AI助手">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 8V4H8"/>
+    <rect width="16" height="12" x="4" y="8" rx="2"/>
+    <path d="M2 14h2"/>
+    <path d="M20 14h2"/>
+    <path d="M15 13v2"/>
+    <path d="M9 13v2"/>
+  </svg>
+  <span>AI 助手</span>
+</button>
+
+<!-- AI Chat Modal -->
+<div class="ai-chat-modal" id="aiChatModal">
+  <div class="ai-chat-container">
+    <!-- Header -->
+    <div class="ai-chat-header">
+      <div class="ai-chat-title">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 8V4H8"/>
+          <rect width="16" height="12" x="4" y="8" rx="2"/>
+          <path d="M2 14h2"/>
+          <path d="M20 14h2"/>
+          <path d="M15 13v2"/>
+          <path d="M9 13v2"/>
+        </svg>
+        <span>Harmony Wiki AI 助手</span>
+      </div>
+      <button class="ai-chat-close" id="aiChatClose" aria-label="关闭">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Error Message -->
+    <div class="ai-chat-error" id="aiChatError"></div>
+
+    <!-- Messages -->
+    <div class="ai-chat-messages" id="aiChatMessages">
+      <div class="ai-chat-welcome">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 8V4H8"/>
+          <rect width="16" height="12" x="4" y="8" rx="2"/>
+          <path d="M2 14h2"/>
+          <path d="M20 14h2"/>
+          <path d="M15 13v2"/>
+          <path d="M9 13v2"/>
+        </svg>
+        <p>👋 你好！我是 Harmony Wiki AI 助手</p>
+        <p>可以帮你解答关于 OpenHarmony 的各种问题</p>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="ai-chat-input-area">
+      <div class="ai-chat-input-wrapper">
+        <textarea 
+          class="ai-chat-input" 
+          id="aiChatInput" 
+          placeholder="输入你的问题..."
+          rows="1"
+        ></textarea>
+        <button class="ai-chat-send" id="aiChatSend" aria-label="发送">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/>
+            <path d="m21.854 2.147-10.94 10.939"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Configuration
+  const API_BASE_URL = 'https://harmony-wiki.zulogic.cn';
+  
+  // Elements
+  const chatButton = document.getElementById('aiChatButton');
+  const chatModal = document.getElementById('aiChatModal');
+  const chatClose = document.getElementById('aiChatClose');
+  const chatMessages = document.getElementById('aiChatMessages');
+  const chatInput = document.getElementById('aiChatInput');
+  const chatSend = document.getElementById('aiChatSend');
+  const chatError = document.getElementById('aiChatError');
+  
+  // State
+  let isOpen = false;
+  let isLoading = false;
+  let abortController = null;
+  
+  // Auto-resize textarea
+  function autoResize() {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 128) + 'px';
+  }
+  
+  chatInput.addEventListener('input', autoResize);
+  
+  // Open modal
+  function openChat() {
+    isOpen = true;
+    chatModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    chatInput.focus();
+  }
+  
+  // Close modal
+  function closeChat() {
+    isOpen = false;
+    chatModal.classList.remove('active');
+    document.body.style.overflow = '';
+    if (abortController) {
+      abortController.abort();
+      abortController = null;
+    }
+  }
+  
+  // Show error
+  function showError(message) {
+    chatError.textContent = message;
+    chatError.classList.add('active');
+    setTimeout(() => {
+      chatError.classList.remove('active');
+    }, 5000);
+  }
+  
+  // Hide error
+  function hideError() {
+    chatError.classList.remove('active');
+  }
+  
+  // Add message to chat
+  function addMessage(role, content) {
+    // Remove welcome message if exists
+    const welcome = chatMessages.querySelector('.ai-chat-welcome');
+    if (welcome) {
+      welcome.remove();
+    }
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-chat-message ${role}`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = role === 'user' ? '我' : 'AI';
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'ai-chat-content';
+    contentDiv.innerHTML = formatContent(content);
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(contentDiv);
+    chatMessages.appendChild(messageDiv);
+    
+    scrollToBottom();
+    
+    return contentDiv;
+  }
+  
+  // Add loading indicator
+  function addLoadingIndicator() {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'ai-chat-message assistant';
+    messageDiv.id = 'aiChatLoading';
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = 'AI';
+    
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'ai-chat-typing';
+    typingDiv.innerHTML = `
+      <div class="ai-chat-typing-dot"></div>
+      <div class="ai-chat-typing-dot"></div>
+      <div class="ai-chat-typing-dot"></div>
+    `;
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(typingDiv);
+    chatMessages.appendChild(messageDiv);
+    
+    scrollToBottom();
+  }
+  
+  // Remove loading indicator
+  function removeLoadingIndicator() {
+    const loading = document.getElementById('aiChatLoading');
+    if (loading) {
+      loading.remove();
+    }
+  }
+  
+  // Format content (simple markdown)
+  function formatContent(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
+  }
+  
+  // Scroll to bottom
+  function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Send message
+  async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message || isLoading) return;
+    
+    // Add user message
+    addMessage('user', message);
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+    
+    // Set loading state
+    isLoading = true;
+    chatSend.disabled = true;
+    hideError();
+    addLoadingIndicator();
+    
+    // Create abort controller
+    abortController = new AbortController();
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+        signal: abortController.signal,
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      // Remove loading indicator
+      removeLoadingIndicator();
+      
+      // Create assistant message container
+      const contentDiv = addMessage('assistant', '');
+      
+      // Read SSE stream
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let fullContent = '';
+      
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+        
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') {
+              break;
+            }
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.content) {
+                fullContent += parsed.content;
+                contentDiv.innerHTML = formatContent(fullContent);
+                scrollToBottom();
+              }
+            } catch (e) {
+              // Ignore parse errors
+            }
+          }
+        }
+      }
+      
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        return;
+      }
+      console.error('Chat error:', error);
+      removeLoadingIndicator();
+      showError('发送失败，请检查网络连接或稍后重试');
+    } finally {
+      isLoading = false;
+      chatSend.disabled = false;
+      abortController = null;
+      chatInput.focus();
+    }
+  }
+  
+  // Event listeners
+  chatButton.addEventListener('click', openChat);
+  chatClose.addEventListener('click', closeChat);
+  
+  chatModal.addEventListener('click', (e) => {
+    if (e.target === chatModal) {
+      closeChat();
+    }
+  });
+  
+  chatSend.addEventListener('click', sendMessage);
+  
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  
+  // Escape key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      closeChat();
+    }
+  });
+})();
+</script>
